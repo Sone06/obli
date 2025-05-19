@@ -1,4 +1,3 @@
-
 class Pieza:
     def __init__(self,descPieza,costoPieza,cantidadPieza):
         self.codigo=0
