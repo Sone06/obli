@@ -4,6 +4,15 @@ class Pieza:
         self.descPieza=descPieza
         self.costoPieza=costoPieza
         self.cantidadPieza=cantidadPieza
+        
+    def actualizar(self):
+        pass
 
-        def __str__(self):
-            return f"{self.codigo} {self.descPieza} {self.costoPieza} {self.cantidadPieza}"
+    def costo_unitario(self):
+        return self.costoPieza*1.5
+    
+    def actualizar_pieza(self):
+        pass
+
+    def cantidad(self):
+        return self.cantidadPieza

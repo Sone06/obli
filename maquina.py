@@ -1,33 +1,27 @@
-class maquina:
-    def __init__(self, codigo, descripcion,):
+from pieza import Pieza
 
+class Maquina:
+    def __init__(self, codigo, descripcion):
         self.codigo = codigo
         self.descripcion = descripcion
-        self.piezas_requeridas = []   # Lista de piezas (objeto Pieza)
-        self.cantidades = []          # Lista de cantidades requeridas de cada pieza
+        self.piezas_requeridas = []  # lista de objetos Pieza
+        self.cantidades = []  # cantidades necesarias por pieza
 
     def agregar_requerimiento(self, pieza, cantidad):
-        """Agrega una pieza y la cantidad necesaria para fabricar una unidad de esta máquina."""
         self.piezas_requeridas.append(pieza)
         self.cantidades.append(cantidad)
 
     def disponibilidad(self):
-        """Verifica si hay suficientes piezas en stock para fabricar una unidad de esta máquina."""
-        for i in range(len(self.piezas_requeridas)):
-            pieza = self.piezas_requeridas[i]
-            cantidad_necesaria = self.cantidades[i]
-            if pieza.cantidad < cantidad_necesaria:
-                print(f"No hay suficiente de la pieza '{pieza.nombre}': se necesita {cantidad_necesaria}, hay {pieza.cantidad}.")
+        for i, pieza in enumerate(self.piezas_requeridas):
+            if pieza.cantidadPieza < self.cantidades[i]:
                 return False
-        print(f"Todas las piezas están disponibles para fabricar una '{self.descripcion}'.")
         return True
 
     def costo_produccion(self):
-        """Calcula el costo total de fabricar una unidad de esta máquina."""
         total = 0
-        for i in range(len(self.piezas_requeridas)):
-            pieza = self.piezas_requeridas[i]
-            cantidad = self.cantidades[i]
-            total += pieza.costo_unitario * cantidad
+        for i, Pieza in enumerate(self.piezas_requeridas):
+            total += Pieza.costoPieza * self.cantidades[i]
         return total
-        pass    
+
+    def __str__(self):
+        return f"Código: {self.codigo}, Desc: {self.descripcion}, Costo Producción: ${self.costo_produccion():.2f}"

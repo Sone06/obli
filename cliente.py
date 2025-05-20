@@ -18,12 +18,11 @@ class ClienteParticular(Cliente):
         self.nombreCompleto = nombreCompleto
 
     def mostrar_datos(self):
-        print(f"Cliente Particular:")
-        print(f"Nombre: {self.nombreCompleto}")
-        print(f"Cédula: {self.cedula}")
-        print(f"Teléfono: {self.telefono}")
-        print(f"Correo: {self.correoE}")
+        return f"Cliente Particular - ID: {self.id}, Nombre: {self.nombreCompleto}, Cédula: {self.cedula}, Tel: {self.telefono}, Email: {self.correoE}"
 
+    @property
+    def es_empresa(self):
+        return False
 
 class Empresa(Cliente):
     def __init__(self, id, telefono, correoE, RUT, nombre, paginaWeb):
@@ -33,20 +32,10 @@ class Empresa(Cliente):
         self.paginaWeb = paginaWeb
 
     def mostrar_datos(self):
-        print(f"Empresa:")
-        print(f"Nombre: {self.nombre}")
-        print(f"RUT: {self.RUT}")
-        print(f"Teléfono: {self.telefono}")
-        print(f"Correo: {self.correoE}")
-        print(f"Web: {self.paginaWeb}")
+        return f"Empresa - ID: {self.id}, Nombre: {self.nombre}, RUT: {self.RUT}, Tel: {self.telefono}, Email: {self.correoE}, Web: {self.paginaWeb}"
 
+    @property
+    def es_empresa(self):
+        return True
 
-
-
-
-
-
-
-
-
-
+        
