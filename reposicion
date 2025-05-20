@@ -1,9 +1,0 @@
-
-class reposicion:
-    def __init__ (self,pieza,cantidad_lotes,fecha):
-        self.pieza=pieza
-        self.cantidad_lotes=cantidad_lotes
-        self.fecha=fecha
-    
-    def costo(self):
-        pass
