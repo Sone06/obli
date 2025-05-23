@@ -15,7 +15,7 @@ class Pedido:
             precio_base *= 0.8
         return precio_base
 
-
-    def __str__(self):
+    @property
+    def mostrarPedidos(self):
         fecha_entrega_str = self.fechaEntregado.strftime("%Y-%m-%d %H:%M:%S") if self.fechaEntregado else "Pendiente"
-        return f"Cliente: {self.cliente.id}, Máquina: {self.maquina.descripcion}, Estado: {self.estado}, Precio: ${self.precio():.2f}, Fecha recibido: {self.fechaRecibido.strftime('%Y-%m-%d %H:%M:%S')}, Fecha entrega: {fecha_entrega_str}"
+        return print(f"Cliente: {self.cliente.id}, Máquina: {self.maquina.descripcion}, Estado: {self.estado}, Precio: ${self.precio():.2f}, Fecha recibido: {self.fechaRecibido.strftime('%Y-%m-%d %H:%M:%S')}, Fecha entrega: {fecha_entrega_str}")

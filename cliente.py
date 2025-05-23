@@ -18,7 +18,10 @@ class ClienteParticular(Cliente):
         self.nombreCompleto = nombreCompleto
 
     def mostrar_datos(self):
-        return f"Cliente Particular - ID: {self.id}, Nombre: {self.nombreCompleto}, Cédula: {self.cedula}, Tel: {self.telefono}, Email: {self.correoE}"
+        print(f"Cliente Particular - ID: {self.id}, Nombre: {self.nombreCompleto}, Cédula: {self.cedula}, Tel: {self.telefono}, Email: {self.correoE}")
+
+    def imprimir_datos(self):
+        print(f"Cliente Particular - ID: {self.id}, Nombre: {self.nombreCompleto}, Cédula: {self.cedula}, Tel: {self.telefono}, Email: {self.correoE}")
 
     @property
     def es_empresa(self):
@@ -32,8 +35,10 @@ class Empresa(Cliente):
         self.paginaWeb = paginaWeb
 
     def mostrar_datos(self):
-        return f"Empresa - ID: {self.id}, Nombre: {self.nombre}, RUT: {self.RUT}, Tel: {self.telefono}, Email: {self.correoE}, Web: {self.paginaWeb}"
+        print(f"Empresa - ID: {self.id}, Nombre: {self.nombre}, RUT: {self.RUT}, Tel: {self.telefono}, Email: {self.correoE}, Web: {self.paginaWeb}")
 
+    def imprimir_datos(self):
+        print(f"Empresa - ID: {self.id}, Nombre: {self.nombre}, RUT: {self.RUT}, Tel: {self.telefono}, Email: {self.correoE}, Web: {self.paginaWeb}")
     @property
     def es_empresa(self):
         return True

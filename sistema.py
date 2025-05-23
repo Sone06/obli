@@ -1,9 +1,10 @@
-from reposicion import Reposicion
 from datetime import datetime
-from pieza import Pieza
 from maquina import Maquina
+from reposicion import Reposicion
+from pieza import Pieza
 from cliente import Cliente
 from pedido import Pedido
+
 
 class Sistema:
     def __init__(self):
@@ -32,7 +33,7 @@ class Sistema:
     def agregar_reposicion(self, reposicion):
         self.reposiciones.append(reposicion)
         # actualizar stock
-        reposicion.pieza.cantidadPieza += reposicion.cantidad_lotes 
+        reposicion.pieza.cantidadPieza += reposicion.cantidad 
         
 
     def buscar_pieza_por_codigo(self, codigo):
@@ -67,3 +68,7 @@ class Sistema:
                     pedido.fechaEntregado = datetime.now()
                     self.actualizar_stock_por_pedido(pedido)
                     print(f"Pedido de cliente {pedido.cliente.id} entregado tras reposición.")
+    
+    def procesar_todos_los_pedidos(self):
+        for x in range(0,len(self.pedidos)):
+            self.procesar_pedidos_pendientes(self.pedidos[x])

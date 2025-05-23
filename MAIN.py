@@ -2,8 +2,8 @@
 
 from datetime import datetime
 
+from cliente import Cliente, ClienteParticular, Empresa
 
-from cliente import ClienteParticular, Empresa
 from pieza import Pieza
 from maquina import Maquina
 from pedido import Pedido
@@ -131,11 +131,13 @@ def main():
                     if pieza is None:
                         print("Pieza no encontrada.")
                         continue
-                    cant_lotes = int(input("Cantidad de lotes a reponer: "))
+                    cant = int(input("Cantidad a reponer: "))
                     fecha = datetime.now()
-                    repos = Reposicion(pieza, cant_lotes, fecha)
+                    repos = Reposicion(pieza, cant, fecha)
                     sistema_fabrica.agregar_reposicion(repos)
+                    sistema_fabrica.procesar_todos_los_pedidos()
                     print("Reposición registrada y stock actualizado.")
+                    
 
                 elif opc_reg == "6":
                     break
@@ -155,20 +157,45 @@ def main():
 
                 if opc_list == "1":  # Clientes
                     print("Clientes registrados:")
-                    for cliente in sistema_fabrica.clientes:
-                        cliente.mostrar_datos()
+                    for x in range(0,len(sistema_fabrica.clientes)):
+                        print("--------------")
+                        sistema_fabrica.clientes[x].imprimir_datos()
                         print("--------------")
 
+
                 elif opc_list == "2":  # Pedidos
-                    print("Pedidos registrados:")
-                    for ped in sistema_fabrica.pedidos:
-                        print(f"Cliente ID: {ped.cliente.id}")
-                        print(f"Máquina: {ped.maquina.descripcion}")
-                        print(f"Estado: {ped.estado}")
-                        print(f"Fecha recibido: {ped.fechaRecibido}")
-                        print(f"Fecha entregado: {ped.fechaEntregado}")
-                        print(f"Precio: {ped.precio():.2f}")
-                        print("--------------")
+                    print("Pedidos pendientes(1), Pedidos Entregados(2), Todos los pedidos(3)")
+                    if int(input("Ingrese opción: ")) == 1:
+                        print("Pedidos pendientes:")
+                        for x in range(0,len(sistema_fabrica.pedidos)):
+                            if sistema_fabrica.pedidos[x].estado == "Pendiente":
+                                sistema_fabrica.pedidos[x].mostrarPedidos
+                        
+                    
+                    if int(input("Ingrese opción: ")) == 2:
+                        print("Pedidos entregados:")
+                        for x in range(0,len(sistema_fabrica.pedidos)):
+                            if sistema_fabrica.pedidos[x].estado == "Entregado":
+                                ped=sistema_fabrica.pedidos[x]
+                                print(f"Cliente ID: {ped.cliente.id}")
+                                print(f"Máquina: {ped.maquina.descripcion}")
+                                print(f"Estado: {ped.estado}")
+                                print(f"Fecha recibido: {ped.fechaRecibido}")
+                                print(f"Fecha entregado: {ped.fechaEntregado}")
+                                print(f"Precio: {ped.precio():.2f}")
+                                print("--------------")
+                        
+                    
+                    if int(input("Ingrese opción: ")) == 3:
+                        print("Pedidos registrados:")
+                        for ped in sistema_fabrica.pedidos:
+                            print(f"Cliente ID: {ped.cliente.id}")
+                            print(f"Máquina: {ped.maquina.descripcion}")
+                            print(f"Estado: {ped.estado}")
+                            print(f"Fecha recibido: {ped.fechaRecibido}")
+                            print(f"Fecha entregado: {ped.fechaEntregado}")
+                            print(f"Precio: {ped.precio():.2f}")
+                            print("--------------")
 
                 elif opc_list == "3":  # Máquinas
                     print("Máquinas registradas:")
